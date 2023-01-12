@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 导入 开发环境的 配置文件 -->
+    <!--<context:property-placeholder location="classpath:development.properties"/>-->
+
+    <bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+        <property name="resultSetLogEnabled" value="false"/>
+        <property name="connectionLogEnabled" value="false"/>
+        <property name="dataSourceLogEnabled" value="false"/>
+        <property name="statementLogEnabled" value="true"/>
+        <property name="statementExecutableSqlLogEnable" value="false"/>
+        <property name="statementParameterSetLogEnabled" value="true"/>
+        <property name="statementPrepareAfterLogEnabled" value="false"/>
+        <property name="statementParameterClearLogEnable" value="false"/>
+        <property name="statementCreateAfterLogEnabled" value="false"/>
+        <property name="statementSqlPrettyFormat" value="false"/>
+    </bean>
+
+    <bean id="statFilter" class="com.alibaba.druid.filter.stat.StatFilter">
+        <property name="slowSqlMillis" value="10000"/>
+        <property name="logSlowSql" value="true"/>
+        <property name="mergeSql" value="true"/>
+    </bean>
+
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+        <property name="proxyFilters">
+            <list>
+                <ref bean="logFilter"/>
+                <ref bean="statFilter"/>
+            </list>
+        </property>
+        <property name="maxActive" value="100"/>
+        <property name="initialSize" value="2"/>
+        <property name="maxWait" value="60000"/>
+        <property name="minIdle" value="1"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="minEvictableIdleTimeMillis" value="300000"/>
+        <property name="validationQuery" value="${db.validationQuery}"/>
+        <property name="testWhileIdle" value="true"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="poolPreparedStatements" value="true"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
+    </bean>
+
+
+    <bean id="mySessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <array>
+                <value>com.lsl.test.infrastructure.po</value>
+            </array>
+        </property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${db.dialect}</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.generate_statistics">false</prop>
+                <prop key="hibernate.connection.release_mode">auto</prop>
+                <prop key="hibernate.autoReconnect">true</prop>
+                <prop key="hibernate.cache.use_second_level_cache">false</prop>
+                <prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

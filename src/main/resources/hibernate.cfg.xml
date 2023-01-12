@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+<session-factory>
+    <!--使用 Hibernate 自带的连接池配置-->
+    <!-- 数据库连接配置 -->
+    <property name="connection.driver_class">oracle.jdbc.OracleDriver</property>
+    <property name="connection.url">jdbc:oracle:thin:@127.0.0.1:1521:orcl</property>
+    <property name="connection.username">ehrview</property>
+    <property name="connection.password">ehrview</property>
+
+    <!-- SQL方言（Dialect）配置 -->
+    <property name="dialect">org.hibernate.dialect.Oracle10gDialect</property>
+    <!-- 是否显示执行的SQL语句 -->
+    <property name="show_sql">true</property>
+    <!-- 是否格式化SQL语句 -->
+    <property name="format_sql">true</property>
+    <!-- 配置实体映射文件路径 -->
+    <!--<mapping resource="mapping/Category.hbm.xml"/>-->
+    <mapping class="com.lsl.test.infrastructure.po.ViewPO"/>
+</session-factory>
+</hibernate-configuration>
