@@ -33,7 +33,8 @@ import static com.lsl.common.enums.DynamicCompileEnum.*;
 import static com.lsl.common.enums.WatcherEnum.COMPILE_EXECUTE;
 
 /**
- * @Description: TODO
+ * freemarker的核心配置类
+ * @Description: 在这里完成相关核心准备工作
  * @Author: lsl
  * @Data:2022-12-08 17:35
  * @Projectname: Kathryn
