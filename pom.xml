@@ -224,7 +224,7 @@
                 <version>2.2</version>
                 <configuration>
                     <path>/</path>  <!--项目访问路径-->
-                    <port>8080</port><!--项目访问端口，不写默认也是8080-->
+                    <port>9300</port><!--项目访问端口，不写默认也是8080-->
                 </configuration>
             </plugin>
         </plugins>
