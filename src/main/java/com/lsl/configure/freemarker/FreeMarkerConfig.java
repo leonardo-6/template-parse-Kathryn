@@ -123,7 +123,9 @@ public class FreeMarkerConfig {
         }
         // FREEMARKER_RESOURCE_NAME+SLASH.symbol()+
         for (String configFileName : configFileNames) {
-            collectMap.put(configFileName,FileUtils.getFileNames(SLASH.symbol().equals(parameterConfigure.getFreemarkerResourceName())?SLASH.symbol()+configFileName: parameterConfigure.getFreemarkerResourceName()+SLASH.symbol()+configFileName));
+            collectMap.put(configFileName,FileUtils.getFileNames(SLASH.symbol().equals(parameterConfigure.getFreemarkerResourceName())?
+                    MyStrUtils.spliceFirstSymbol(SLASH.symbol()+configFileName):
+                    MyStrUtils.spliceFirstSymbol(parameterConfigure.getFreemarkerResourceName()+SLASH.symbol()+configFileName)));
         }
 
         // 添加监听器
@@ -242,7 +244,7 @@ public class FreeMarkerConfig {
 
                         //templateName = FreemarkerUtil.getMotherTemplateNameForReflex(resourceName,template.getSourceName()) + templateName;
                         // 3.3.3. 文件生成成功就获取
-                        if (FileUtils.createFreeMarkSqlFile(parameterConfigure.getFreemarkerResourceName(),sourcePath,templateName, obj.toString())) {
+                        if (FileUtils.createFreeMarkSqlFile(MyStrUtils.spliceFirstSymbol(parameterConfigure.getFreemarkerResourceName()),sourcePath,templateName, obj.toString())) {
                             try {
                                 // 3.3.3.1. 根据指定路径生成的文件 获取生成对应的小模板
                                 Template templateTemp = configuration.getTemplate(sourcePath+TEMP_PATH + templateName + FREEMARKER_FILE_SUFFIX);

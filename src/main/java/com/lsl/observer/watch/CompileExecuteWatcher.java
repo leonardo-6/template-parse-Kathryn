@@ -80,7 +80,7 @@ public class CompileExecuteWatcher extends Observer {
             packagePath = MyStrUtils.pointConvertForReflex(packagePath);
             try {
                 // 执行动态编译
-                dynamicBeanHandler.loadBean(parameterConfigure.getFreemarkerResourceName(),
+                dynamicBeanHandler.loadBean(MyStrUtils.spliceFirstSymbol(parameterConfigure.getFreemarkerResourceName()),
                         (String) messages.get(className), classNameResult,packagePath);
             } catch (IOException e) {
                 e.printStackTrace();
