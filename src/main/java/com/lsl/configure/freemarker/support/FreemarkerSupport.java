@@ -18,8 +18,8 @@ import java.util.regex.Pattern;
 import static com.lsl.common.constant.FreemarkerConstant.CUSTOMER_PARAMETERS_MAP;
 
 /**
- *
- * @Description: TODO
+ * freemarker支持类
+ * @Description: 针对freemarker的util
  * @Author: lsl
  * @Data:2022-12-09 17:08
  * @Projectname: Kathryn

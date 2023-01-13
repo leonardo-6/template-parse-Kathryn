@@ -143,7 +143,7 @@ public class FreeMarkerConfig {
         configuration = new freemarker.template.Configuration(freemarker.template.Configuration.VERSION_2_3_30);
 
         // 第二步：设置模板文件所在的路径。
-        String rootPath = Thread.currentThread().getContextClassLoader().getResource(parameterConfigure.getFreemarkerResourceName()).getPath();
+        String rootPath = Thread.currentThread().getContextClassLoader().getResource(MyStrUtils.spliceFirstSymbol(parameterConfigure.getFreemarkerResourceName())).getPath();
         configuration.setDirectoryForTemplateLoading(new File(rootPath));
 
         // 第三步：设置模板文件使用的字符集。一般就是utf-8.
