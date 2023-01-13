@@ -223,8 +223,8 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <path>/</path>  <!--项目访问路径-->
-                    <port>9300</port><!--项目访问端口，不写默认也是8080-->
+                    <path>/Kathryn</path>  <!--项目访问路径-->
+                    <port>9300</port><!--项目访问端口，不写默认也是9300-->
                 </configuration>
             </plugin>
         </plugins>
